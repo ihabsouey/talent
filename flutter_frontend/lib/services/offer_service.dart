@@ -13,7 +13,8 @@ class OfferService {
         date: 'Septembre 2026',
         overview: 'Mission principale',
         details: 'Responsabilités, compétences',
-        imageUrl: 'https://via.placeholder.com/150',
+        imageUrl:
+            'https://images.ctfassets.net/ihx0a8chifpc/gPyHKDGI0md4NkRDjs4k8/36be1e73008a0181c1980f727f29d002/avatar-placeholder-generator-500x500.jpg',
       ),
       Offer(
         title: 'Tech Innovators',
@@ -24,7 +25,8 @@ class OfferService {
         date: 'Juin 2026',
         overview: 'Découvrir',
         details: 'Apprendre',
-        imageUrl: 'https://via.placeholder.com/150',
+        imageUrl:
+            'https://images.ctfassets.net/ihx0a8chifpc/gPyHKDGI0md4NkRDjs4k8/36be1e73008a0181c1980f727f29d002/avatar-placeholder-generator-500x500.jpg',
       ),
     ];
   }
