@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/offer.dart';
 import '../widgets/custom_button.dart';
+import '../constants.dart';
 
 class OfferDetailScreen extends StatelessWidget {
   @override
@@ -8,10 +9,18 @@ class OfferDetailScreen extends StatelessWidget {
     final Offer offer = ModalRoute.of(context)!.settings.arguments as Offer;
     return Scaffold(
       appBar: AppBar(title: Text(offer.title)),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [lightGradientStart, lightGradientEnd],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
             Image.network(
               offer.imageUrl,
               width: double.infinity,
@@ -38,7 +47,7 @@ class OfferDetailScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         TabBar(
-                          labelColor: Colors.deepPurple,
+                          labelColor: primaryColor,
                           tabs: [
                             Tab(text: 'Overview'),
                             Tab(text: 'Details'),

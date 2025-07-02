@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../widgets/custom_button.dart';
+import '../constants.dart';
 
 class RoleSelectionScreen extends StatelessWidget {
   Future<void> _selectRole(BuildContext context, String role) async {
@@ -12,8 +13,15 @@ class RoleSelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Welcome !')),
-      body: Padding(
+      appBar: AppBar(title: const Text('Welcome !')),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [lightGradientStart, lightGradientEnd],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         padding: const EdgeInsets.all(24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -26,19 +34,19 @@ class RoleSelectionScreen extends StatelessWidget {
             SizedBox(height: 40),
             CustomButton(
               text: 'Je suis étudiant.e',
-              color: Colors.deepPurple,
+              color: primaryColor,
               onPressed: () => _selectRole(context, 'student'),
             ),
             SizedBox(height: 16),
             CustomButton(
               text: 'Je suis administrateur.trice',
-              color: Colors.cyan,
+              color: secondaryColor,
               onPressed: () => _selectRole(context, 'admin'),
             ),
             SizedBox(height: 16),
             CustomButton(
               text: 'Je suis Recruteur.trice',
-              color: Colors.pinkAccent,
+              color: recruiterColor,
               onPressed: () => _selectRole(context, 'recruiter'),
             ),
           ],
