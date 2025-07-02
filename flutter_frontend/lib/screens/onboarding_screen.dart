@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -23,9 +24,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.deepPurple, Colors.lightBlueAccent],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            colors: [lightGradientStart, lightGradientEnd],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
         ),
         child: Center(

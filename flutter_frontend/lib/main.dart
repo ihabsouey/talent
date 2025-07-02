@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'constants.dart';
 import 'screens/onboarding_screen.dart';
 import 'screens/role_selection_screen.dart';
 import 'screens/login_screen.dart';
@@ -15,7 +17,14 @@ class TalentApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Talent',
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
+      theme: ThemeData(
+        primaryColor: primaryColor,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: primaryColor,
+          secondary: secondaryColor,
+        ),
+        textTheme: GoogleFonts.poppinsTextTheme(),
+      ),
       initialRoute: '/',
       routes: {
         '/': (context) => OnboardingScreen(),

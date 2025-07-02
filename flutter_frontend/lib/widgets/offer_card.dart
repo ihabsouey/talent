@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/offer.dart';
+import '../constants.dart';
 
 class OfferCard extends StatelessWidget {
   final Offer offer;
@@ -9,45 +10,52 @@ class OfferCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 8),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      elevation: 4,
       child: InkWell(
         onTap: () => Navigator.pushNamed(context, '/detail', arguments: offer),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.network(
-                  offer.imageUrl,
-                  width: 60,
-                  height: 60,
-                  fit: BoxFit.cover,
-                ),
+        child: Stack(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(18),
+              child: Image.network(
+                offer.imageUrl,
+                width: double.infinity,
+                height: 180,
+                fit: BoxFit.cover,
               ),
-              SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(offer.title,
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                    SizedBox(height: 4),
-                    Text('${offer.city}, ${offer.country}'),
-                    Text(offer.salary),
-                  ],
-                ),
+            ),
+            Positioned(
+              bottom: 12,
+              left: 12,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    offer.title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    '${offer.city}, ${offer.country}',
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ],
               ),
-              IconButton(
-                icon: Icon(
-                  offer.isFavorite ? Icons.favorite : Icons.favorite_border,
-                  color: Colors.pink,
-                ),
-                onPressed: () {},
-              )
-            ],
-          ),
+            ),
+            Positioned(
+              top: 10,
+              right: 10,
+              child: Icon(
+                offer.isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
       ),
     );
