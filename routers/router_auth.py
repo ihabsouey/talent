@@ -132,3 +132,24 @@ async def login(user_credentials: OAuth2PasswordRequestForm = Depends()):
 @router.get('/me')
 def secure_endpoint(user_data: dict = Depends(get_current_user)):
     return user_data
+
+@router.get('/my-validations')
+async def get_my_validations(current_user: dict = Depends(get_current_user)):
+    """Étudiant récupère ses demandes de validation"""
+    if current_user.get('user_type') != 'student':
+        raise HTTPException(status_code=403, detail="Réservé aux étudiants")
+    
+    try:
+        all_validations = db.child("skill_validations").get().val() or {}
+        my_validations = []
+        
+        for validation_id, validation in all_validations.items():
+            if validation.get('student_id') == current_user['uid']:
+                validation['id'] = validation_id
+                my_validations.append(validation)
+        
+        # Trier par date de création (plus récent en premier)
+        my_validations.sort(key=lambda x: x.get('created_at', ''), reverse=True)
+        return my_validations
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
